@@ -22,7 +22,7 @@ function showSection(sectionId) {
   
   // Live countdown timer
 function startLiveCountdown() {
-    const anniversaryDate = new Date('2025-05-19T00:00:00');
+    const anniversaryDate = new Date('2025-19-05T00:00:00');
     
     function updateTimer() {
       const now = new Date();
@@ -57,7 +57,7 @@ function startLiveCountdown() {
   
   function startLiveCountdown() {
     // Set the target anniversary date in UTC
-    const anniversaryDateUTC = new Date(Date.UTC(2025, 3, 19, 0, 0, 0)); // May 19, 2025, at 00:00 UTC
+    const anniversaryDateUTC = new Date(Date.UTC(2025, 4, 19, 0, 0, 0)); // May 19, 2025, at 00:00 UTC
   
     function updateTimer() {
       const now = new Date(); // Get the current local time
