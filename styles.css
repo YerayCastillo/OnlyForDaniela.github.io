@@ -14,12 +14,11 @@ body, html {
   justify-content: center;
   align-items: center;
   position: relative;
-  background: linear-gradient(to top, rgb(255, 247, 213) 50%, rgb(255, 201, 110) 50%);
+  background: linear-gradient(to top, rgb(255, 247, 213) 30%, rgb(255, 201, 110) 70%);
   background-size: cover; /* Ensures the background scales proportionally */
   background-repeat: no-repeat; /* Prevents tiling of the background */
   background-attachment: fixed; /* Keeps the background fixed during scrolling */
 }
-
 
 /* Background image */
 .background::before {
@@ -50,7 +49,7 @@ body, html {
   margin-bottom: 20px;
 }
 
-/* Buttons */
+/* Button */
 button {
   display: block;
   margin: 10px auto;
@@ -64,18 +63,10 @@ button {
 }
 
 /* Timer Section */
-#timer-section h2, #versicle-section h2 {
+#timer-section h2 {
   color: #FF8C42;
   margin-bottom: 10px;
 }
-
-/* Description */
-.description {
-  color: #333;
-  font-style: italic;
-}
-
-
 
 /* Menu Icon */
 #menu-icon {
@@ -85,6 +76,7 @@ button {
   font-size: 1.5rem;
   color: #FF8C42;
   cursor: pointer;
+  display: none; /* Initially hidden */
 }
 
 /* Hidden Elements */
