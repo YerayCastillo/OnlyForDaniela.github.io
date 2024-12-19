@@ -44,35 +44,48 @@ function showSection(sectionId) {
     updateTimer(); // Run immediately to avoid delay
     const timerInterval = setInterval(updateTimer, 1000); // Update every second
   }
-  
- // Cargar el versículo diario basado en la fecha
+ 
+
 function loadDailyVersicle() {
   fetch('versicles.txt')
-    .then(response => response.text())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error al cargar el archivo versicles.txt');
+      }
+      return response.text();
+    })
     .then(data => {
       const versicles = data.trim().split('\n');
       const today = new Date();
       const dayOfYear = Math.floor(
         (today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24)
       );
-      const index = dayOfYear % versicles.length; // Ciclar entre los versículos
+      const index = dayOfYear % versicles.length;
 
-      // Separar el número, título y contenido del versículo
+      // Dividir y mostrar datos
       const versicleParts = versicles[index].split(':');
-      const number = versicleParts[0]?.trim(); // Número del versículo
-      const title = versicleParts[1]?.trim(); // Título del versículo
-      const content = versicleParts.slice(2).join(':').trim(); // Contenido del versículo
+      if (versicleParts.length < 3) {
+        console.error('Formato incorrecto en versículo:', versicles[index]);
+        document.getElementById('versicle-box').textContent = "Error en el formato del versículo.";
+        return;
+      }
 
-      // Mostrar el versículo
+      const number = versicleParts[0]?.trim();
+      const title = versicleParts[1]?.trim();
+      const content = versicleParts.slice(2).join(':').trim();
+
+      // Mostrar contenido
       document.getElementById('versicle-box').innerHTML = `
         <h3>Versículo ${number}: ${title}</h3>
         <p>${content}</p>
       `;
     })
-    .catch(() => {
+    .catch(error => {
+      console.error('Error cargando el versículo:', error);
       document.getElementById('versicle-box').textContent = "No se pudo cargar el versículo.";
     });
 }
+
 
   
   // Redirect to the main menu
