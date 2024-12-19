@@ -6,6 +6,7 @@ body, html {
   font-family: 'Arial', sans-serif;
 }
 
+ 
 /* Background styling with full responsiveness */
 .background {
   height: 100vh; /* Full height of the viewport */
@@ -19,8 +20,6 @@ body, html {
   background-repeat: no-repeat; /* Prevents tiling of the background */
   background-attachment: fixed; /* Keeps the background fixed during scrolling */
 }
-
-
 
 
 
