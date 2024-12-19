@@ -6,15 +6,16 @@ body, html {
   font-family: 'Arial', sans-serif;
 }
 
-/* Background styling with horizontal gradient */
+/* Background styling with specified colors */
 .background {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  background: linear-gradient(to top, black 50%, grey 50%);
+  background: linear-gradient(to top, rgb(255, 247, 213) 70%, rgb(255, 201, 110) 30%);
 }
+
 
 /* Background image */
 .background::before {
