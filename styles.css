@@ -6,16 +6,19 @@ body, html {
   font-family: 'Arial', sans-serif;
 }
 
-/* Background styling with specified colors */
+/* Background styling with full responsiveness */
 .background {
-  height: 100vh;
+  height: 100vh; /* Full height of the viewport */
+  width: 100vw; /* Full width of the viewport */
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  background: linear-gradient(to top,rgb(255, 201, 110)  70%,  rgb(255, 247, 213)30%);
+  background: linear-gradient(to top, rgb(255, 247, 213) 30%, rgb(255, 201, 110) 70%);
+  background-size: cover; /* Ensures the background scales proportionally */
+  background-repeat: no-repeat; /* Prevents tiling of the background */
+  background-attachment: fixed; /* Keeps the background fixed during scrolling */
 }
-
 /* Background image */
 .background::before {
   content: '';
