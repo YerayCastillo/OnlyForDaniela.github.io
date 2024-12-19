@@ -45,24 +45,35 @@ function showSection(sectionId) {
     const timerInterval = setInterval(updateTimer, 1000); // Update every second
   }
   
-  // Load a random versicle from the file
-  function loadRandomVersicle() {
-    fetch('versicles.txt')
-      .then(response => response.text())
-      .then(data => {
-        const versicles = data.trim().split('\n');
-        const randomIndex = Math.floor(Math.random() * versicles.length);
-        const [number, title, ...content] = versicles[randomIndex].split(':');
-  
-        document.getElementById('versicle-box').innerHTML = `
-          <h3>${number}: ${title}</h3>
-          <p>${content.join(':')}</p>
-        `;
-      })
-      .catch(() => {
-        document.getElementById('versicle-box').textContent = "Could not load a versicle.";
-      });
-  }
+ // Cargar el versículo diario basado en la fecha
+function loadDailyVersicle() {
+  fetch('versicles.txt')
+    .then(response => response.text())
+    .then(data => {
+      const versicles = data.trim().split('\n');
+      const today = new Date();
+      const dayOfYear = Math.floor(
+        (today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24)
+      );
+      const index = dayOfYear % versicles.length; // Ciclar entre los versículos
+
+      // Separar el número, título y contenido del versículo
+      const versicleParts = versicles[index].split(':');
+      const number = versicleParts[0]?.trim(); // Número del versículo
+      const title = versicleParts[1]?.trim(); // Título del versículo
+      const content = versicleParts.slice(2).join(':').trim(); // Contenido del versículo
+
+      // Mostrar el versículo
+      document.getElementById('versicle-box').innerHTML = `
+        <h3>Versículo ${number}: ${title}</h3>
+        <p>${content}</p>
+      `;
+    })
+    .catch(() => {
+      document.getElementById('versicle-box').textContent = "No se pudo cargar el versículo.";
+    });
+}
+
   
   // Redirect to the main menu
   function redirectToMenu() {
