@@ -1,0 +1,97 @@
+/* General Reset */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Background styling with horizontal gradient */
+.background {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(to top, black 50%, grey 50%);
+}
+
+/* Background image */
+.background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('background.jpg') no-repeat center center/cover;
+  opacity: 0.6; /* Adjust for transparency */
+  z-index: 0;
+}
+
+/* Main content container */
+.content {
+  position: relative;
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+  z-index: 1; /* Ensure content is above background */
+}
+
+/* Main title */
+.main-title {
+  color: #FF8C42;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: #FF8C42;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Timer Section */
+#timer-section h2, #versicle-section h2 {
+  color: #FF8C42;
+  margin-bottom: 10px;
+}
+
+/* Description */
+.description {
+  color: #333;
+  font-style: italic;
+}
+
+/* Versicle Box */
+.versicle-box {
+  margin-top: 10px;
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+/* Menu Icon */
+#menu-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.5rem;
+  color: #FF8C42;
+  cursor: pointer;
+  display: none; /* Initially hidden */
+}
+
+/* Hidden Elements */
+.hidden {
+  display: none;
+}
