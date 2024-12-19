@@ -1,4 +1,4 @@
- /* General Reset */
+/* General Reset */
 body, html {
   margin: 0;
   padding: 0;
@@ -6,22 +6,15 @@ body, html {
   font-family: 'Arial', sans-serif;
 }
 
- 
-/* Background styling with full responsiveness */
+/* Background styling */
 .background {
-  height: 100vh; /* Full height of the viewport */
-  width: 100vw; /* Full width of the viewport */
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  background: linear-gradient(to top, rgb(255, 247, 213) 30%, rgb(255, 201, 110) 70%);
-  background-size: cover; /* Ensures the background scales proportionally */
-  background-repeat: no-repeat; /* Prevents tiling of the background */
-  background-attachment: fixed; /* Keeps the background fixed during scrolling */
+  background: linear-gradient(to right, black 50%, grey 50%);
 }
-
-
 
 /* Background image */
 .background::before {
@@ -87,7 +80,6 @@ button {
   font-size: 1.5rem;
   color: #FF8C42;
   cursor: pointer;
-  display: none; /* Initially hidden */
 }
 
 /* Hidden Elements */
