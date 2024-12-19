@@ -20,39 +20,46 @@ function showSection(sectionId) {
     loadDailyVersicle(); // Load the daily verse
   });
   
-  // Live countdown timer
-function startLiveCountdown() {
-    const anniversaryDate = new Date('2025-05-19T00:00:00');
-    
-    function updateTimer() {
-      const now = new Date();
-      const diff = anniversaryDate - now;
-  
-      if (diff > 0) {
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-  
-        // Always display all components, even if some are zero
-        const formattedCountdown = `
-          ${days > 0 ? `${days} days, ` : ''}
-          ${hours > 0 || days > 0 ? `${hours} hours, ` : ''}
-          ${minutes} minutes, 
-          ${seconds} seconds remaining.
-        `.trim();
-  
-        // Display the updated countdown
-        document.getElementById('countdown-timer').textContent = formattedCountdown;
-      } else {
-        document.getElementById('countdown-timer').textContent = "The anniversary has passed!";
-        clearInterval(timerInterval); // Stop updating after the anniversary
-      }
+  function startLiveCountdown() {
+  // Set the target anniversary date in UTC
+  const anniversaryDateUTC = new Date(Date.UTC(2025, 4, 19, 0, 0, 0)); // May 19, 2025, at 00:00 UTC
+
+  function updateTimer() {
+    // Get the current UTC time
+    const now = new Date();
+    const nowUTC = new Date(Date.UTC(
+      now.getUTCFullYear(),
+      now.getUTCMonth(),
+      now.getUTCDate(),
+      now.getUTCHours(),
+      now.getUTCMinutes(),
+      now.getUTCSeconds()
+    ));
+
+    const diff = anniversaryDateUTC - nowUTC; // Calculate the difference in milliseconds
+
+    if (diff > 0) {
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      // Display full countdown
+      document.getElementById('countdown-timer').textContent = 
+        `${days} day${days !== 1 ? 's' : ''}, ` +
+        `${hours} hour${hours !== 1 ? 's' : ''}, ` +
+        `${minutes} minute${minutes !== 1 ? 's' : ''}, ` +
+        `${seconds} second${seconds !== 1 ? 's' : ''} left.`;
+    } else {
+      document.getElementById('countdown-timer').textContent = "The anniversary has passed!";
+      clearInterval(timerInterval); // Stop the timer after the anniversary
     }
-  
-    updateTimer(); // Run immediately to show the initial value
-    const timerInterval = setInterval(updateTimer, 1000); // Update every second
   }
+
+  updateTimer(); // Run immediately to show initial value
+  const timerInterval = setInterval(updateTimer, 1000); // Update every second
+}
+
   
   
   function startLiveCountdown() {
