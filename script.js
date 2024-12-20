@@ -118,36 +118,35 @@ function showSection(sectionId) {
       versicleBox.style.whiteSpace = 'pre-wrap'; // Prevent text separation
     }
     // Button to show the daily verse
-document.getElementById('versicle-button').addEventListener('click', () => {
+    document.getElementById('versicle-button').addEventListener('click', () => {
     loadDailyVersicle(); // Load the daily verse
     document.getElementById('versicle-section').classList.remove('hidden'); // Show the verse section
     document.getElementById('timer-section').classList.add('hidden'); // Hide other sections
-  
-    // Hide the background
-    document.querySelector('.background').classList.add('no-background');
-  });
-  
- 
-  }
+    });
+   }
   
   // Automatically load the daily verse on page load
   document.addEventListener('DOMContentLoaded', () => {
     loadDailyVersicle();
   });
+
   
-  // Function to redirect to the main menu
-  function redirectToMenu() {
+  // Function to show the main menu
+ function showMainMenu() {
     const sections = ['timer-section', 'versicle-section'];
-    sections.forEach(id => document.getElementById(id).classList.add('hidden'));
-    document.getElementById('menu-icon').style.display = 'none'; // Hide menu icon
-
-    // Show the background if it is hidden
-  const background = document.querySelector('.background');
-  if (background.classList.contains('no-background')) {
-    background.classList.remove('no-background');
-  }
+    sections.forEach(id => {
+      document.getElementById(id).classList.add('hidden');
+    });
+  
+    // Ensure the buttons are visible
+    document.getElementById('anniversary-button').style.display = 'block';
+    document.getElementById('versicle-button').style.display = 'block';
+  
+    // Optionally, hide the menu icon if needed
+    document.getElementById('menu-icon').style.display = 'none';
   }
   
-  // Associate redirection function to menu icon
-  document.getElementById('menu-icon').addEventListener('click', redirectToMenu);
-
+  // Event listener for the menu icon
+  document.getElementById('menu-icon').addEventListener('click', showMainMenu);
+  
+  
