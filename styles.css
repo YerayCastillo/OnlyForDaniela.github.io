@@ -14,7 +14,7 @@ body, html {
   justify-content: center;
   align-items: center;
   position: relative;
-  background: linear-gradient(to top, rgb(255, 247, 213) 1500%, rgb(255, 201, 110) 100%);
+  background: linear-gradient(to top, rgb(255, 247, 213) 30%, rgb(255, 201, 110) 200%);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
