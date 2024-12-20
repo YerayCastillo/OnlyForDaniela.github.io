@@ -62,10 +62,10 @@ button {
 .versicle-box {
   margin-top: 10px;
   padding: 15px;
-  background: white;
+  background: rgba(255, 140, 71, 0.5);
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 224, 178, 0.5);
-  color: #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: white;
   display: inline-block; /* Ensures it wraps content only */
   max-width: 100%; /* Prevents overflow */
   text-align: left;
