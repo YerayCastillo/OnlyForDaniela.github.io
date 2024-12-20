@@ -64,7 +64,7 @@ button {
   padding: 15px;
   background: white;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(255, 224, 178, 0.5);
   color: #333;
   display: inline-block; /* Ensures it wraps content only */
   max-width: 100%; /* Prevents overflow */
