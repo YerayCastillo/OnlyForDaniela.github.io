@@ -135,8 +135,8 @@ function showSection(sectionId) {
     "39: Salmo 119:105 Lámpara es a mis pies tu palabra, y lumbrera a mi camino.",
     "40: 1 Corintios 10:13 No os ha sobrevenido ninguna tentación que no sea humana; pero fiel es Dios, que no os dejará ser tentados más de lo que podéis resistir."
   ];
-  
  
+
 // Function to load and display the daily verse
 function loadDailyVersicle() {
   // Get the current date in UTC
@@ -150,15 +150,31 @@ function loadDailyVersicle() {
   const index = dayOfYear % versicles.length; // Cycle if days exceed the number of verses
 
   // Extract the verse components (number, title, and content)
-  const [number, title, ...contentParts] = versicles[index].split(':');
-  const content = contentParts.join(':').trim(); // Join the remaining parts as the full content
+  const match = versicles[index].match(/^(\d+):\s([^:]+:\d+)\s(.+)$/);
+  if (match) {
+    const number = match[1];
+    const title = match[2]; // Includes book and chapter:verse
+    const content = match[3];
 
-  // Format and display the verse in the designated box
-  document.getElementById('versicle-box').innerHTML = `
-    <h3><strong>Verse ${number.trim()}: ${title.trim()}</strong></h3>
-    <p>${content}</p>
-  `;
+    // Format and display the verse in the designated box
+    document.getElementById('versicle-box').innerHTML = `
+      <h3><strong>Verse ${number}: ${title}</strong></h3>
+      <p>${content}</p>
+    `;
+  }
 }
+
+// Button to show the daily verse
+document.getElementById('versicle-button').addEventListener('click', () => {
+  loadDailyVersicle(); // Load the daily verse
+  document.getElementById('versicle-section').classList.remove('hidden'); // Show the verse section
+  document.getElementById('timer-section').classList.add('hidden'); // Hide other sections
+});
+
+// Ensure the daily verse is loaded when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  loadDailyVersicle();
+});
 
 // Button to show the daily verse
 document.getElementById('versicle-button').addEventListener('click', () => {
