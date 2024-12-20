@@ -195,6 +195,8 @@ document.getElementById('versicle-button').addEventListener('click', () => {
   loadDailyVersicle(); // Load the daily verse
   document.getElementById('versicle-section').classList.remove('hidden'); // Show the verse section
   document.getElementById('timer-section').classList.add('hidden'); // Hide other sections
+  // Hide the background
+  document.querySelector('.background').classList.add('no-background');
 });
 
 // Ensure the daily verse is loaded when the page loads
@@ -222,6 +224,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = ['timer-section', 'versicle-section'];
     sections.forEach(id => document.getElementById(id).classList.add('hidden'));
     document.getElementById('menu-icon').style.display = 'none'; // Hide menu icon
+
+   // Show the background if it is hidden
+  const background = document.querySelector('.background');
+  if (background.classList.contains('no-background')) {
+    background.classList.remove('no-background');
+  }
   }
   
   // Associate redirection function to menu icon
