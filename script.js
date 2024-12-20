@@ -135,34 +135,48 @@ function showSection(sectionId) {
     "39: Salmo 119:105 Lámpara es a mis pies tu palabra, y lumbrera a mi camino.",
     "40: 1 Corintios 10:13 No os ha sobrevenido ninguna tentación que no sea humana; pero fiel es Dios, que no os dejará ser tentados más de lo que podéis resistir."
   ];
- 
 
-// Function to load and display the daily verse
+
+// Función para cargar y mostrar el versículo diario
 function loadDailyVersicle() {
-  // Get the current date in UTC
   const todayUTC = new Date();
   const yearStartUTC = new Date(Date.UTC(todayUTC.getUTCFullYear(), 0, 0));
-
-  // Calculate the day of the year (UTC-based)
   const dayOfYear = Math.floor((todayUTC - yearStartUTC) / (1000 * 60 * 60 * 24));
+  const index = dayOfYear % versicles.length;
 
-  // Determine the verse for today
-  const index = dayOfYear % versicles.length; // Cycle if days exceed the number of verses
-
-  // Extract the verse components (number, title, and content)
+  // Separar el número, la referencia y el contenido del versículo
   const match = versicles[index].match(/^(\d+):\s([^:]+:\d+)\s(.+)$/);
   if (match) {
     const number = match[1];
-    const reference = match[2]; // Includes book and chapter:verse
+    const reference = match[2]; // Incluye libro y capítulo:versículo
     const content = match[3];
 
-    // Format and display the verse in the designated box
-    document.getElementById('versicle-box').innerHTML = `
+    // Construir y mostrar el versículo correctamente formateado
+    const formattedVersicle = `
       <h3><strong>Verse ${number}: ${reference}</strong></h3>
       <p>${content}</p>
     `;
+
+    // Mostrar el contenido en el contenedor
+    const versicleBox = document.getElementById('versicle-box');
+    versicleBox.innerHTML = formattedVersicle;
+
+    // Asegurar que el texto no se separe
+    versicleBox.style.whiteSpace = 'pre-wrap'; // Mantiene los saltos y evita la separación.
   }
 }
+
+// Botón para mostrar el versículo diario
+document.getElementById('versicle-button').addEventListener('click', () => {
+  loadDailyVersicle();
+  document.getElementById('versicle-section').classList.remove('hidden');
+  document.getElementById('timer-section').classList.add('hidden');
+});
+
+// Cargar automáticamente el versículo al iniciar
+document.addEventListener('DOMContentLoaded', () => {
+  loadDailyVersicle();
+});
 
 // Button to show the daily verse
 document.getElementById('versicle-button').addEventListener('click', () => {
