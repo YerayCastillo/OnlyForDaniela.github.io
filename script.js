@@ -136,33 +136,42 @@ function showSection(sectionId) {
     "40: 1 Corintios 10:13 No os ha sobrevenido ninguna tentación que no sea humana; pero fiel es Dios, que no os dejará ser tentados más de lo que podéis resistir."
   ];
   
-  
-  // Function to load and display the daily verse
-  function loadDailyVersicle() {
-    // Get the current date in UTC
-    const todayUTC = new Date();
-    const yearStartUTC = new Date(Date.UTC(todayUTC.getUTCFullYear(), 0, 0));
-    
-    // Calculate the day of the year (UTC-based)
-    const dayOfYear = Math.floor((todayUTC - yearStartUTC) / (1000 * 60 * 60 * 24));
-    
-    // Determine the verse for today
-    const index = dayOfYear % versicles.length; // Cycle if days exceed the number of verses
-    
-    // Extract the verse components (number, title, and content)
-    const [number, title, ...contentParts] = versicles[index].split(':');
-    const content = contentParts.join(':').trim(); // Join the remaining parts as the full content
-    
-    // Display the verse in the designated box
-    document.getElementById('versicle-box').innerHTML = `
-      <h3>Verse ${number.trim()}: ${title.trim()}</h3>
-      <p>${content}</p>
-    `;
-  }
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    loadDailyVersicle();
-  });
+ 
+// Function to load and display the daily verse
+function loadDailyVersicle() {
+  // Get the current date in UTC
+  const todayUTC = new Date();
+  const yearStartUTC = new Date(Date.UTC(todayUTC.getUTCFullYear(), 0, 0));
+
+  // Calculate the day of the year (UTC-based)
+  const dayOfYear = Math.floor((todayUTC - yearStartUTC) / (1000 * 60 * 60 * 24));
+
+  // Determine the verse for today
+  const index = dayOfYear % versicles.length; // Cycle if days exceed the number of verses
+
+  // Extract the verse components (number, title, and content)
+  const [number, title, ...contentParts] = versicles[index].split(':');
+  const content = contentParts.join(':').trim(); // Join the remaining parts as the full content
+
+  // Format and display the verse in the designated box
+  document.getElementById('versicle-box').innerHTML = `
+    <h3><strong>Verse ${number.trim()}: ${title.trim()}</strong></h3>
+    <p>${content}</p>
+  `;
+}
+
+// Button to show the daily verse
+document.getElementById('versicle-button').addEventListener('click', () => {
+  loadDailyVersicle(); // Load the daily verse
+  document.getElementById('versicle-section').classList.remove('hidden'); // Show the verse section
+  document.getElementById('timer-section').classList.add('hidden'); // Hide other sections
+});
+
+// Ensure the daily verse is loaded when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  loadDailyVersicle();
+});
+
   
   
   
