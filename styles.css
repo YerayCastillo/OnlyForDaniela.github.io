@@ -7,19 +7,38 @@ body, html {
 }
 
 
-.background {
+.background  {
   height: 100vh;
   width: 100vw;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  background: linear-gradient(to top, rgb(249, 238, 188,0.1), rgb(234, 151, 9,0.8)), 
-              url('background.png') no-repeat center center/cover;
+  background: url('background.png') no-repeat center center/cover; /* Image layer */
   z-index: 0;
 }
+
+.background::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgb(249, 238, 188,0.1), rgb(234, 151, 9,0.8)); /* Gradient layer */
+  z-index: 1;
+}
+
+.background-content {
+  position: relative;
+  z-index: 2; /* Content sits above the gradient and image */
+  color: white;
+  text-align: center;
+}
+
+
 .no-background {
-  background: none; /* Removes the background */
+  background: none; /* Removes the background image */
 }
 
 
