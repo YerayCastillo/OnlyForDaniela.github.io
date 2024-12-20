@@ -14,7 +14,7 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('background.png') no-repeat center center/cover; /* Image layer */
+  background: url('background.jpg') no-repeat center center/cover; /* Image layer */
   z-index: 0;
 }
 
@@ -37,9 +37,6 @@ body, html {
 }
 
 
-.no-background {
-  background: none; /* Removes the background image */
-}
 
 
 /* Main content container */
@@ -101,10 +98,20 @@ button {
   position: absolute;
   top: 20px;
   left: 20px;
-  font-size: 1.5rem;
-  color: #FF8C42;
+  width: 50px; /* Adjust size */
+  height: 50px; /* Adjust size */
+  padding: 0;
+  border: none;
+  background: none; /* Remove default button background */
   cursor: pointer;
-  display: none;
+  z-index: 3; /* Place it above other elements */
+}
+
+/* Image inside the Menu Icon */
+.menu-icon-image {
+  width: 100%; /* Fill the button */
+  height: 100%; /* Fill the button */
+  object-fit: contain; /* Ensure proper image scaling */
 }
 
 /* Hidden Elements */
