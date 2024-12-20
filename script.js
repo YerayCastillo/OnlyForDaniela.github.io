@@ -128,7 +128,7 @@ function showSection(sectionId) {
     "32: Isaías 26;3 Tú guardarás en completa paz a aquel cuyo pensamiento en ti persevera; porque en ti ha confiado.",
     "33: Salmo 42;11 ¿Por qué te abates, oh alma mía, y por qué te turbas dentro de mí? Espera en Dios; porque aún he de alabarle.",
     "34: Juan 14;27 La paz os dejo, mi paz os doy; yo no os la doy como el mundo la da. No se turbe vuestro corazón, ni tenga miedo.",
-    "35: Romanos 8;37 Antes, en todas estas cosas somos más que vencedores por medio de aquel que nos amó.",
+    "35: Romanos 8:37 Antes, en todas estas cosas somos más que vencedores por medio de aquel que nos amó.",
     "36: Isaías 12;2 He aquí, Dios es salvación mía; confiaré, y no temeré.",
     "37: Proverbios 16;3 Encomienda a Jehová tus obras, y tus pensamientos serán afirmados.",
     "38: 2 Corintios 12;9 Bástate mi gracia; porque mi poder se perfecciona en la debilidad.",
