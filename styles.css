@@ -89,7 +89,7 @@ button {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   color: white;
   display: inline-block; /* Ensures it wraps content only */
-  max-width: 60%; /* Prevents overflow */
+  max-width: 80%; /* Prevents overflow */
   text-align: center;
 }
 
