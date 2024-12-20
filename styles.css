@@ -82,24 +82,24 @@ button {
 
 /* Versicle Box */
 .versicle-box {
-  margin-top: 10px;
+  margin-top: 15px;
   padding: 15px;
-  background: rgba(255, 140, 71, 0.95);
-  border-radius: 10px;
+  background: rgba(255, 140, 71, 1);
+  border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   color: white;
   display: inline-block; /* Ensures it wraps content only */
-  max-width: 90%; /* Prevents overflow */
+  max-width: 100%; /* Prevents overflow */
   text-align: center;
 }
 
 /* Menu Icon */
 #menu-icon {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 50px; /* Adjust size */
-  height: 50px; /* Adjust size */
+  top: 15px;
+  left: 15px;
+  width: 45px; /* Adjust size */
+  height: 45px; /* Adjust size */
   padding: 0;
   border: none;
   background: none; /* Remove default button background */
