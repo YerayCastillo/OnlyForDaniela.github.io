@@ -1,4 +1,4 @@
- // Function to show a specific section and hide the others
+// Function to show a specific section and hide the others
 function showSection(sectionId) {
     const sections = ['timer-section', 'versicle-section'];
     sections.forEach(id => {
@@ -20,50 +20,8 @@ function showSection(sectionId) {
     loadDailyVersicle(); // Load the daily verse
   });
   
+  // Function to start the live countdown
   function startLiveCountdown() {
-  // Set the target anniversary date in UTC
-  const anniversaryDateUTC = new Date(Date.UTC(2025, 4, 19, 0, 0, 0)); // May 19, 2025, at 00:00 UTC
-
-  function updateTimer() {
-    // Get the current UTC time
-    const now = new Date();
-    const nowUTC = new Date(Date.UTC(
-      now.getUTCFullYear(),
-      now.getUTCMonth(),
-      now.getUTCDate(),
-      now.getUTCHours(),
-      now.getUTCMinutes(),
-      now.getUTCSeconds()
-    ));
-
-    const diff = anniversaryDateUTC - nowUTC; // Calculate the difference in milliseconds
-
-    if (diff > 0) {
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      // Display full countdown
-      document.getElementById('countdown-timer').textContent = 
-        `${days} day${days !== 1 ? 's' : ''}, ` +
-        `${hours} hour${hours !== 1 ? 's' : ''}, ` +
-        `${minutes} minute${minutes !== 1 ? 's' : ''}, ` +
-        `${seconds} second${seconds !== 1 ? 's' : ''} left.`;
-    } else {
-      document.getElementById('countdown-timer').textContent = "The anniversary has passed!";
-      clearInterval(timerInterval); // Stop the timer after the anniversary
-    }
-  }
-
-  updateTimer(); // Run immediately to show initial value
-  const timerInterval = setInterval(updateTimer, 1000); // Update every second
-}
-
-  
-  
-  function startLiveCountdown() {
-    // Set the target anniversary date in UTC
     const anniversaryDateUTC = new Date(Date.UTC(2025, 4, 19, 0, 0, 0)); // May 19, 2025, at 00:00 UTC
   
     function updateTimer() {
@@ -92,8 +50,8 @@ function showSection(sectionId) {
     const timerInterval = setInterval(updateTimer, 1000); // Update every second
   }
   
-  // Embedded versicles array
-  const versicles = [
+   // Embedded versicles array
+   const versicles = [
     "1: Salmo 23:4 Aunque pase por valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infundirán aliento.",
     "2: Mateo 11:28 Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar.",
     "3: Filipenses 4:13 Todo lo puedo en Cristo que me fortalece.",
@@ -135,97 +93,55 @@ function showSection(sectionId) {
     "39: Salmo 119:105 Lámpara es a mis pies tu palabra, y lumbrera a mi camino.",
     "40: 1 Corintios 10:13 No os ha sobrevenido ninguna tentación que no sea humana; pero fiel es Dios, que no os dejará ser tentados más de lo que podéis resistir."
   ];
-
-
-// Función para cargar y mostrar el versículo diario
-function loadDailyVersicle() {
-  const todayUTC = new Date();
-  const yearStartUTC = new Date(Date.UTC(todayUTC.getUTCFullYear(), 0, 0));
-  const dayOfYear = Math.floor((todayUTC - yearStartUTC) / (1000 * 60 * 60 * 24));
-  const index = dayOfYear % versicles.length;
-
-  // Separar el número, la referencia y el contenido del versículo
-  const match = versicles[index].match(/^(\d+):\s([^:]+:\d+)\s(.+)$/);
-  if (match) {
-    const number = match[1];
-    const reference = match[2]; // Incluye libro y capítulo:versículo
-    const content = match[3];
-
-    // Construir y mostrar el versículo correctamente formateado
-    const formattedVersicle = `
-      <h3><strong>Verse ${number}: ${reference}</strong></h3>
-      <p>${content}</p>
-    `;
-
-    // Mostrar el contenido en el contenedor
-    const versicleBox = document.getElementById('versicle-box');
-    versicleBox.innerHTML = formattedVersicle;
-
-    // Asegurar que el texto no se separe
-    versicleBox.style.whiteSpace = 'pre-wrap'; // Mantiene los saltos y evita la separación.
+  
+  // Function to load and display the daily verse
+  function loadDailyVersicle() {
+    const todayUTC = new Date();
+    const yearStartUTC = new Date(Date.UTC(todayUTC.getUTCFullYear(), 0, 0));
+    const dayOfYear = Math.floor((todayUTC - yearStartUTC) / (1000 * 60 * 60 * 24));
+    const index = dayOfYear % versicles.length;
+  
+    // Match the number, reference, and content of the verse
+    const match = versicles[index].match(/^(\d+):\s([^:]+:\d+)\s(.+)$/);
+    if (match) {
+      const number = match[1];
+      const reference = match[2];
+      const content = match[3];
+  
+      // Format and display the verse
+      const formattedVersicle = `
+        <h3><strong>Verse ${number}: ${reference}</strong></h3>
+        <p>${content}</p>
+      `;
+      const versicleBox = document.getElementById('versicle-box');
+      versicleBox.innerHTML = formattedVersicle;
+      versicleBox.style.whiteSpace = 'pre-wrap'; // Prevent text separation
+    }
+    // Button to show the daily verse
+document.getElementById('versicle-button').addEventListener('click', () => {
+    loadDailyVersicle(); // Load the daily verse
+    document.getElementById('versicle-section').classList.remove('hidden'); // Show the verse section
+    document.getElementById('timer-section').classList.add('hidden'); // Hide other sections
+  
+    // Hide the background
+    document.querySelector('.background').classList.add('no-background');
+  });
+  
+ 
   }
-}
-
-// Botón para mostrar el versículo diario
-document.getElementById('versicle-button').addEventListener('click', () => {
-  loadDailyVersicle();
-  document.getElementById('versicle-section').classList.remove('hidden');
-  document.getElementById('timer-section').classList.add('hidden');
-});
-
-// Cargar automáticamente el versículo al iniciar
-document.addEventListener('DOMContentLoaded', () => {
-  loadDailyVersicle();
-});
-
-// Button to show the daily verse
-document.getElementById('versicle-button').addEventListener('click', () => {
-  loadDailyVersicle(); // Load the daily verse
-  document.getElementById('versicle-section').classList.remove('hidden'); // Show the verse section
-  document.getElementById('timer-section').classList.add('hidden'); // Hide other sections
-});
-
-// Ensure the daily verse is loaded when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-  loadDailyVersicle();
-});
-
-// Button to show the daily verse
-document.getElementById('versicle-button').addEventListener('click', () => {
-  loadDailyVersicle(); // Load the daily verse
-  document.getElementById('versicle-section').classList.remove('hidden'); // Show the verse section
-  document.getElementById('timer-section').classList.add('hidden'); // Hide other sections
-  // Hide the background
-  document.querySelector('.background').classList.add('no-background');
-});
-
-// Ensure the daily verse is loaded when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-  loadDailyVersicle();
-});
-
-// Button to show the daily verse
-document.getElementById('versicle-button').addEventListener('click', () => {
-  loadDailyVersicle(); // Load the daily verse
-  document.getElementById('versicle-section').classList.remove('hidden'); // Show the verse section
-  document.getElementById('timer-section').classList.add('hidden'); // Hide other sections
-});
-
-// Ensure the daily verse is loaded when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-  loadDailyVersicle();
-});
-
   
+  // Automatically load the daily verse on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    loadDailyVersicle();
+  });
   
-  
-  // Redirect to the main menu
+  // Function to redirect to the main menu
   function redirectToMenu() {
     const sections = ['timer-section', 'versicle-section'];
     sections.forEach(id => document.getElementById(id).classList.add('hidden'));
     document.getElementById('menu-icon').style.display = 'none'; // Hide menu icon
 
-   // Show the background if it is hidden
+    // Show the background if it is hidden
   const background = document.querySelector('.background');
   if (background.classList.contains('no-background')) {
     background.classList.remove('no-background');
@@ -234,3 +150,4 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Associate redirection function to menu icon
   document.getElementById('menu-icon').addEventListener('click', redirectToMenu);
+
